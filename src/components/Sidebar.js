@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FaBlog, FaEnvelope, FaHome, FaProjectDiagram, FaUserAlt, FaBars } from "react-icons/fa";
 import "../styles/sidebar.css";
 
@@ -7,6 +8,11 @@ const Sidebar = ({ setActiveSection, activeSection }) => {
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleLinkClick = (section) => {
+    setActiveSection(section);
+    setIsSidebarOpen(false); // Close sidebar after clicking a link
   };
 
   return (
@@ -20,35 +26,30 @@ const Sidebar = ({ setActiveSection, activeSection }) => {
         </div>
         <nav>
           <ul>
-            <li
-              className={activeSection === "Home" ? "active" : ""}
-              onClick={() => setActiveSection("Home")}
-            >
-              <FaHome /> Home
+            <li className={activeSection === "Home" ? "active" : ""}>
+              <Link to="/" onClick={() => handleLinkClick("Home")}>
+                <FaHome /> Home
+              </Link>
             </li>
-            <li
-              className={activeSection === "About" ? "active" : ""}
-              onClick={() => setActiveSection("About")}
-            >
-              <FaUserAlt /> About Me
+            <li className={activeSection === "About" ? "active" : ""}>
+              <Link to="/about" onClick={() => handleLinkClick("About")}>
+                <FaUserAlt /> About Me
+              </Link>
             </li>
-            <li
-              className={activeSection === "Projects" ? "active" : ""}
-              onClick={() => setActiveSection("Projects")}
-            >
-              <FaProjectDiagram /> Projects
+            <li className={activeSection === "Projects" ? "active" : ""}>
+              <Link to="/projects" onClick={() => handleLinkClick("Projects")}>
+                <FaProjectDiagram /> Projects
+              </Link>
             </li>
-            <li
-              className={activeSection === "Blog" ? "active" : ""}
-              onClick={() => setActiveSection("Blog")}
-            >
-              <FaBlog /> Blog
+            <li className={activeSection === "Blog" ? "active" : ""}>
+              <Link to="/blog" onClick={() => handleLinkClick("Blog")}>
+                <FaBlog /> Blog
+              </Link>
             </li>
-            <li
-              className={activeSection === "Contact" ? "active" : ""}
-              onClick={() => setActiveSection("Contact")}
-            >
-              <FaEnvelope /> Contact
+            <li className={activeSection === "Contact" ? "active" : ""}>
+              <Link to="/contact" onClick={() => handleLinkClick("Contact")}>
+                <FaEnvelope /> Contact
+              </Link>
             </li>
           </ul>
         </nav>
