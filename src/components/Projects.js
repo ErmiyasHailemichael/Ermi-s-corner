@@ -25,6 +25,20 @@ const Projects = () => {
       liveDemoLink: 'https://your-live-demo-link.com/project3',
       blogLink: 'https://your-blog-link.com/project3',
     },
+    {
+        title: 'Project 4',
+        description: 'A brief description of Project 3 and its key features.',
+        githubLink: 'https://github.com/your-username/project3',
+        liveDemoLink: 'https://your-live-demo-link.com/project3',
+        blogLink: 'https://your-blog-link.com/project3',
+      },
+      {
+        title: 'Project 5',
+        description: 'A brief description of Project 3 and its key features.',
+        githubLink: 'https://github.com/your-username/project3',
+        liveDemoLink: 'https://your-live-demo-link.com/project3',
+        blogLink: 'https://your-blog-link.com/project3',
+      },
   ];
 
   return (

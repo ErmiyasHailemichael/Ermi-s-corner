@@ -11,3 +11,5 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* In your main CSS file or index.css */
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
