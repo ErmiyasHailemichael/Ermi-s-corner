@@ -1,14 +1,22 @@
 /* General Projects Section Styling */
+body {
+    background-color: #f4f4f4; /* Set main background color for the entire website */
+    color: #111; /* Optional: Adjust text color for better contrast */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    font-family: 'Arial', sans-serif; /* Optional: Set a default font */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
 .projects {
     padding: 60px 20px;
-    background-color: #1d061a;
+    background-color: transparent;
     text-align: center;
   }
   
   .projects h1 {
     font-size: 36px;
     margin-bottom: 40px;
-    color: #fff;
+    color: #111;
   }
   
   /* Container and Box Styling */
@@ -17,25 +25,25 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 40px 50px;
+    padding: 40px 20px; /* Reduced padding for smaller screens */
   }
   
   .container .box {
     position: relative;
-    width: 600px;
-    height: 600px;
+    width: 100%; /* Use full width for smaller screens */
+    max-width: 600px; /* Max width for larger screens */
+    height: auto; /* Allow height to adjust based on content */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 40px 30px;
+    margin: 20px 0; /* Reduced margin for smaller screens */
     transition: 0.5s;
   }
-  
   
   .container .box .content {
     position: relative;
     left: 0;
-    padding: 20px 40px;
+    padding: 20px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -43,32 +51,38 @@
     z-index: 1;
     transition: 0.5s;
     color: #fff;
+    width: 90%; /* Adjust width for better responsiveness */
+    max-width: 500px; /* Max width for content */
+    text-align: left; /* Better readability */
   }
   
   .container .box:hover .content {
     left: -25px;
-    padding: 60px 40px;
+    padding: 40px; /* Adjusted padding */
   }
   
   .container .box .content h2 {
-    font-size: 2em;
+    font-size: 1.8em; /* Adjusted font size */
     color: #fff;
     margin-bottom: 10px;
   }
   
   .container .box .content p {
-    font-size: 1.1em;
+    font-size: 1em; /* Adjusted font size */
     margin-bottom: 10px;
-    line-height: 1.4em;
+    line-height: 1.5em;
   }
   
   .container .box .content .links {
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Make links wrap */
+    gap: 10px; /* Spacing between links */
   }
   
   .container .box .content a {
     display: inline-block;
-    font-size: 1.1em;
+    font-size: 1em;
     color: #111;
     background: #fff;
     padding: 10px;
@@ -82,5 +96,59 @@
     background: #8b8b88;
     border: 1px solid rgba(255, 0, 88, 0.4);
     box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
+  }
+  
+  /* Media Queries for Responsive Design */
+  
+  /* Medium Devices (Tablets) */
+  @media (max-width: 768px) {
+    .projects h1 {
+      font-size: 28px; /* Smaller title for tablets */
+    }
+    
+    .container {
+      padding: 30px 10px; /* Less padding */
+    }
+  
+    .container .box .content {
+      padding: 20px; /* Less padding */
+    }
+  
+    .container .box .content h2 {
+      font-size: 1.6em; /* Smaller font size */
+    }
+  
+    .container .box .content p {
+      font-size: 0.9em; /* Smaller font size */
+    }
+  }
+  
+  /* Small Devices (Mobile Phones) */
+  @media (max-width: 480px) {
+    .projects h1 {
+      font-size: 24px; /* Smaller title for mobile */
+      margin-bottom: 30px; /* Adjusted margin */
+    }
+  
+    .container .box {
+      margin: 10px 0; /* Reduced margin for mobile */
+    }
+  
+    .container .box .content {
+      padding: 15px; /* Reduced padding */
+    }
+  
+    .container .box .content h2 {
+      font-size: 1.4em; /* Smaller font size */
+    }
+  
+    .container .box .content p {
+      font-size: 0.85em; /* Smaller font size */
+    }
+  
+    .container .box .content a {
+      font-size: 0.9em; /* Adjusted font size for links */
+      padding: 8px; /* Adjusted padding for links */
+    }
   }
   

@@ -25,33 +25,30 @@
   margin-bottom: 20px;
 }
 
-.skill-boxes {
+.skill-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px; /* Space between skill boxes */
-  margin-bottom: 40px; /* Space between skills and the timeline */
+  gap: 15px;
 }
 
-.skill-box {
-  padding: 30px 20px;
+.skill {
+  padding: 20px 20px; /* More padding for box effect */
   background-color: #03a9f4;
   color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 200px; /* Larger width for a bigger box */
-  text-align: center;
-  font-size: 18px;
+  border: none;
+  border-radius: 10px; /* Rounded corners */
+  cursor: default;
+  font-size: 45px;
   font-weight: bold;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for box effect */
+  width: 150px; /* Define a width for consistency */
+  text-align: center; /* Center text */
 }
 
-.skill-box:hover {
-  background-color: #0288d1; /* Hover effect */
-  transform: translateY(-5px); /* Lift the box on hover */
+.skill:hover {
+  background-color: #0288d1; /* Slight color change on hover */
 }
 
 /* Education Timeline */
@@ -68,23 +65,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px; /* Space between timeline items */
 }
 
 .timeline-item {
   position: relative;
   background-color: #f9f9f9;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 0 auto;
-  width: 60%;
+  border-left: none; /* Remove the border to make it more box-like */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Increased padding for a box effect */
+  margin: 15px 0;
+  width: 60%; /* Width of the box */
   text-align: left;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for box effect */
+  border: 1px solid #e0e0e0; /* Optional: add border for better visibility */
 }
 
 .timeline-item h4 {
-  margin: 0 0 10px;
+  margin: 0 0 10px; /* More space below title */
   font-size: 20px;
 }
 
@@ -99,22 +96,10 @@
   .timeline-item {
     width: 80%;
   }
-
-  .skill-box {
-    width: 150px; /* Smaller boxes on smaller screens */
-  }
 }
 
 @media (max-width: 480px) {
   .timeline-item {
     width: 90%;
-  }
-
-  .skill-box {
-    width: 120px; /* Even smaller boxes on very small screens */
-  }
-
-  .about p {
-    font-size: 16px; /* Smaller font for better readability */
   }
 }
