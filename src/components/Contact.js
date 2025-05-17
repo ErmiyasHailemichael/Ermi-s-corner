@@ -39,6 +39,7 @@ const Contact = () => {
 
   // Google Maps API key from environment variables
   const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+  console.log('Google Maps API Key:', GOOGLE_MAPS_API_KEY);
 
   const mapStyles = [
     {
