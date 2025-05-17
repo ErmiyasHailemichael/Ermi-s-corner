@@ -1,143 +1,182 @@
 .home-container {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: 40px 20px;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    padding: 2rem;
+    position: relative;
+    background: #EBEDF3;
+    color: #333;
   }
   
   .hero-section {
-    margin-bottom: 40px;
-    animation: fadeIn 1s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    text-align: center;
+  }
+  
+  .hero-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .profile-picture {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 2rem;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .profile-picture-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .profile-picture:hover img {
+    transform: scale(1.1);
+  }
+  
+  .profile-picture-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .profile-picture:hover .profile-picture-overlay {
+    opacity: 1;
+  }
+  
+  .profile-picture-content {
+    color: white;
+    text-align: center;
+    padding: 1rem;
   }
   
   .name {
     font-size: 2.5rem;
-    color: #2d3436;
-    margin: 20px 0 10px;
-    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #0077b5, #005582);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow-light 2s ease-in-out infinite alternate;
   }
   
   .title {
     font-size: 1.5rem;
-    color: #636e72;
-    margin-bottom: 20px;
-    font-weight: 500;
+    margin-bottom: 2rem;
+    color: #0077b5;
   }
   
-  .profile-picture {
-    margin-bottom: 20px;
-    position: relative; 
+  .skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+  
+  .skill-tag {
+    background: rgba(0, 119, 181, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid #0077b5;
+    color: #0077b5;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .skill-tag:hover {
+    background: rgba(0, 119, 181, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 119, 181, 0.2);
   }
   
   .about-me {
-    max-width: 700px;
-    margin: 0 auto 40px;
-    font-size: 1.1em;
+    max-width: 600px;
+    text-align: center;
+    margin: 2rem 0;
     line-height: 1.6;
-    color: #2d3436;
-    animation: slideUp 1s ease-out;
+    color: #555;
   }
   
   .button-container {
     display: flex;
-    gap: 20px;
-    margin-top: 20px;
-    animation: slideUp 1.2s ease-out;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .icon-button {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
     text-decoration: none;
     color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    gap: 8px;
-  }
-  
-  .button-icon {
-    font-size: 1.2em;
   }
   
   .download-button {
-    background-color: #2d3436;
+    background: linear-gradient(45deg, #0077b5, #005582);
+    color: white;
   }
   
   .linkedin-button {
-    background-color: #0077b5;
+    background: #0077b5;
+  }
+  
+  .github-button {
+    background: #333;
+    color: white;
   }
   
   .icon-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
   
-  .download-button:hover {
-    background-color: #1e272e;
+  .button-icon {
+    font-size: 1.2rem;
   }
   
-  .linkedin-button:hover {
-    background-color: #005582;
-  }
-  
-  .profile-picture img {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    object-fit: cover;
-    animation: glow 2s infinite;
-    transition: all 0.3s ease;
-    border: 4px solid white;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profile-picture img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 30px rgba(0, 162, 232, 0.4);
-  }
-  
-  @keyframes glow {
-    0% {
-      box-shadow: 0 0 10px rgba(0, 162, 232, 0.4);
-    }
-    50% {
-      box-shadow: 0 0 20px rgba(0, 162, 232, 0.6);
-    }
-    100% {
-      box-shadow: 0 0 10px rgba(0, 162, 232, 0.4);
-    }
-  }
-  
-  @keyframes fadeIn {
+  @keyframes glow-light {
     from {
-      opacity: 0;
+      text-shadow: 0 0 10px rgba(0, 119, 181, 0.3);
     }
     to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+      text-shadow: 0 0 20px rgba(0, 119, 181, 0.5);
     }
   }
   
   @media (max-width: 768px) {
     .home-container {
-      padding: 20px;
+      padding: 1rem;
     }
     
     .name {
@@ -148,19 +187,13 @@
       font-size: 1.2rem;
     }
     
-    .profile-picture img {
-      width: 200px;
-      height: 200px;
-    }
-    
     .button-container {
       flex-direction: column;
-      gap: 15px;
     }
     
     .icon-button {
       width: 100%;
-      max-width: 300px;
+      justify-content: center;
     }
   }
   
