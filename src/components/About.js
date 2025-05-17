@@ -1,44 +1,39 @@
 import React, { useState } from 'react';
-import { FaLinkedin, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPhp, FaSass, FaVuejs } from 'react-icons/fa';
-import { SiTypescript, SiTailwindcss, SiSvelte, SiNuxtdotjs, SiAstro, SiExpress, SiPrisma } from 'react-icons/si';
+import { FaLinkedin, FaArrowRight, FaArrowLeft, FaBootstrap, FaDatabase, FaJs, FaHtml5, FaCss3Alt, FaReact, FaNodeJs } from 'react-icons/fa';
+import { SiTailwindcss, SiDjango, SiMongodb, SiNetlify } from 'react-icons/si';
 import '../styles/about.css';
 
 const skillsData = [
   {
-    category: 'Featured',
+    category: 'Programming Languages',
     skills: [
-      { name: 'CSS', icon: <FaCss3Alt /> },
-      { name: 'HTML', icon: <FaHtml5 /> },
       { name: 'JavaScript', icon: <FaJs /> },
-      { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
-      { name: 'Vue', icon: <FaVuejs /> },
+      { name: 'Python', icon: <FaDatabase /> },
     ],
   },
   {
-    category: 'Languages',
+    category: 'Front-End',
     skills: [
+      { name: 'Bootstrap', icon: <FaBootstrap /> },
       { name: 'CSS', icon: <FaCss3Alt /> },
       { name: 'HTML', icon: <FaHtml5 /> },
-      { name: 'JavaScript', icon: <FaJs /> },
-      { name: 'TypeScript', icon: <SiTypescript /> },
-    ],
-  },
-  {
-    category: 'Frontend',
-    skills: [
       { name: 'React', icon: <FaReact /> },
-      { name: 'SASS', icon: <FaSass /> },
       { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
-      { name: 'Vue', icon: <FaVuejs /> },
     ],
   },
   {
-    category: 'Backend',
+    category: 'Back-End and Databases',
     skills: [
-      { name: 'Express', icon: <SiExpress /> },
+      { name: 'Django', icon: <SiDjango /> },
+      { name: 'MongoDB', icon: <SiMongodb /> },
       { name: 'Node.js', icon: <FaNodeJs /> },
-      { name: 'Prisma', icon: <SiPrisma /> },
+      { name: 'SQL', icon: <FaDatabase /> },
+    ],
+  },
+  {
+    category: 'Other Tech Skills',
+    skills: [
+      { name: 'Netlify', icon: <SiNetlify /> },
     ],
   },
 ];
@@ -84,9 +79,6 @@ const About = () => {
             <p>
               I am a passionate software developer with a love for building dynamic and user-friendly web applications. My journey in tech started with curiosity and has grown into a deep interest in JavaScript, React, and AI. I enjoy solving real-world problems and am always eager to learn new technologies and improve my skills.
             </p>
-            <button className="next-arrow right" onClick={goNext} aria-label="Next: Skills">
-              <FaArrowRight />
-            </button>
           </section>
         )}
         {/* Skills Page */}
@@ -106,12 +98,6 @@ const About = () => {
                 </div>
               </div>
             ))}
-            <button className="next-arrow left" onClick={goPrev} aria-label="Previous: About Me">
-              <FaArrowLeft />
-            </button>
-            <button className="next-arrow right" onClick={goNext} aria-label="Next: Education">
-              <FaArrowRight />
-            </button>
           </section>
         )}
         {/* Education Page */}
@@ -130,10 +116,21 @@ const About = () => {
                 </div>
               ))}
             </div>
-            <button className="next-arrow left" onClick={goPrev} aria-label="Previous: Skills">
-              <FaArrowLeft />
-            </button>
           </section>
+        )}
+      </div>
+
+      {/* Navigation Arrows */}
+      <div className="about-navigation-arrows">
+        {page > 0 && (
+          <button className="nav-arrow left" onClick={goPrev} aria-label="Previous Page">
+            <FaArrowLeft />
+          </button>
+        )}
+        {page < PAGES.length - 1 && (
+          <button className="nav-arrow right" onClick={goNext} aria-label="Next Page">
+            <FaArrowRight />
+          </button>
         )}
       </div>
     </div>

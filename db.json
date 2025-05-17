@@ -1,0 +1,34 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Building My Portfolio Website",
+      "category": "projects",
+      "date": "2024-03-20T10:00:00Z",
+      "excerpt": "A detailed walkthrough of how I built my portfolio website using React and modern web technologies...",
+      "content": "Full content of the blog post...",
+      "tags": ["React", "Web Development", "Portfolio"],
+      "image": "https://example.com/portfolio-image.jpg"
+    },
+    {
+      "id": 2,
+      "title": "The Rise of AI in Web Development",
+      "category": "tech",
+      "date": "2024-03-19T15:30:00Z",
+      "excerpt": "Exploring how artificial intelligence is transforming the way we build and maintain web applications...",
+      "content": "Full content of the blog post...",
+      "tags": ["AI", "Web Development", "Technology"],
+      "image": "https://example.com/ai-image.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Implementing Authentication in React",
+      "category": "projects",
+      "date": "2024-03-18T09:15:00Z",
+      "excerpt": "A step-by-step guide to implementing secure authentication in React applications...",
+      "content": "Full content of the blog post...",
+      "tags": ["React", "Authentication", "Security"],
+      "image": "https://example.com/auth-image.jpg"
+    }
+  ]
+} 
