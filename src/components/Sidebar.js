@@ -22,7 +22,7 @@ const Sidebar = ({ setActiveSection, activeSection }) => {
       </button>
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <div className="profile-image">
-          <img src="Ermibk.jpg" alt="Ermi's profile picture" />
+          <img src="Ermibk.jpg" alt="Ermi's profile" />
         </div>
         <nav>
           <ul>

@@ -1,59 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Blog.css';
 
 const Blog = () => {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [posts, setPosts] = useState([
+    {
+      _id: '1',
+      title: 'Getting Started with React',
+      category: 'tech',
+      excerpt: 'Learn the basics of React and how to build your first application...',
+      content: 'Full content about React basics...',
+      createdAt: '2024-03-15T10:00:00.000Z',
+      author: { _id: '1', name: 'Admin' },
+      tags: ['React', 'JavaScript', 'Web Development']
+    },
+    {
+      _id: '2',
+      title: 'Building a Portfolio Website',
+      category: 'projects',
+      excerpt: 'A step-by-step guide to creating your own portfolio website...',
+      content: 'Full content about portfolio development...',
+      createdAt: '2024-03-10T15:30:00.000Z',
+      author: { _id: '1', name: 'Admin' },
+      tags: ['Portfolio', 'Web Design', 'CSS']
+    },
+    {
+      _id: '3',
+      title: 'Modern Web Development Trends',
+      category: 'tech',
+      excerpt: 'Exploring the latest trends in web development and what to expect...',
+      content: 'Full content about web development trends...',
+      createdAt: '2024-03-05T09:15:00.000Z',
+      author: { _id: '1', name: 'Admin' },
+      tags: ['Web Development', 'Trends', 'Technology']
+    }
+  ]);
   const [activeCategory, setActiveCategory] = useState('all');
-  const { user, token } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
-  const fetchPosts = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch('http://localhost:5001/api/posts');
-      if (!response.ok) {
-        throw new Error('Failed to fetch posts');
-      }
-      const data = await response.json();
-      setPosts(data);
-      setLoading(false);
-    } catch (err) {
-      setError(err.message);
-      setLoading(false);
-    }
-  };
-
-  const handleDelete = async (postId) => {
-    if (!token) {
+  const handleDelete = (postId) => {
+    if (!user) {
       navigate('/login');
       return;
     }
-
-    try {
-      const response = await fetch(`http://localhost:5001/api/posts/${postId}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (response.ok) {
-        setPosts(posts.filter(post => post._id !== postId));
-      } else {
-        const data = await response.json();
-        setError(data.error);
-      }
-    } catch (err) {
-      setError('Failed to delete post');
-    }
+    setPosts(posts.filter(post => post._id !== postId));
   };
 
   const categories = [
@@ -65,9 +57,6 @@ const Blog = () => {
   const filteredPosts = activeCategory === 'all' 
     ? posts 
     : posts.filter(post => post.category === activeCategory);
-
-  if (loading) return <div className="loading">Loading posts...</div>;
-  if (error) return <div className="error">Error: {error}</div>;
 
   return (
     <div className="blog-container">
