@@ -3,6 +3,10 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import emailjs from '@emailjs/browser';
 import '../styles/Contact.css';
 
+const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_geko8bk';
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_iw0zm08';
+const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || '-3LXg3a6UqvysfV2P';
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -20,6 +24,7 @@ const Contact = () => {
 
   const [mapLoading, setMapLoading] = useState(true);
   const [markerIcon, setMarkerIcon] = useState(null);
+  const [mapError, setMapError] = useState(null);
 
   const mapContainerStyle = {
     width: '100%',
@@ -39,7 +44,7 @@ const Contact = () => {
 
   // Google Maps API key from environment variables
   const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-  console.log('Google Maps API Key:', GOOGLE_MAPS_API_KEY);
+  const staticMapUrl = `https://staticmap.openstreetmap.de/staticmap.php?center=${center.lat},${center.lng}&zoom=13&size=600x300&markers=${center.lat},${center.lng},lightblue1`;
 
   const mapStyles = [
     {
@@ -121,10 +126,19 @@ const Contact = () => {
     e.preventDefault();
     setStatus({ submitting: true, submitted: false, error: null });
 
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      setStatus({
+        submitting: false,
+        submitted: false,
+        error: 'Email service is not configured. Please try again later.'
+      });
+      return;
+    }
+
     try {
       await emailjs.send(
-        'service_geko8bk',
-        'template_iw0zm08',
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         {
           from_name: formData.name,
           from_email: formData.email,
@@ -132,7 +146,7 @@ const Contact = () => {
           subject: formData.subject,
           message: formData.message,
         },
-        '-3LXg3a6UqvysfV2P'
+        EMAILJS_PUBLIC_KEY
       );
 
       setStatus({ submitting: false, submitted: true, error: null });
@@ -144,7 +158,11 @@ const Contact = () => {
         message: ''
       });
     } catch (error) {
-      setStatus({ submitting: false, submitted: false, error: 'Failed to send message. Please try again.' });
+      const reason = error?.text || error?.message || 'Failed to send message. Please try again.';
+      setStatus({ submitting: false, submitted: false, error: reason });
+      // Log to console for debugging without exposing stack to users
+      // eslint-disable-next-line no-console
+      console.error('EmailJS send failed', error);
     }
   };
 
@@ -156,8 +174,8 @@ const Contact = () => {
           <h2>Get in Touch</h2>
           <p>Feel free to reach out to me for any questions or opportunities!</p>
           <div className="contact-details">
-            <p>📧 Email: ermiyas@gmail.com</p>
-            <p>📱 Phone: (206) 555-0123</p>
+            <p>📧 Email: yemeerma11@gmail.com</p>
+            <p>📱 Phone: 206-487-9678</p>
             <p>📍 Location: Seattle, WA</p>
           </div>
           
@@ -168,25 +186,49 @@ const Contact = () => {
                 <p>Loading map...</p>
               </div>
             )}
-            <LoadScript 
-              googleMapsApiKey={GOOGLE_MAPS_API_KEY}
-              onLoad={() => console.log('Script loaded')}
-            >
-              <GoogleMap
-                mapContainerStyle={mapContainerStyle}
-                center={center}
-                zoom={13}
-                onLoad={onMapLoad}
-                options={mapOptions}
+            {mapError && (
+              <div className="error-message">
+                {mapError}
+              </div>
+            )}
+            {GOOGLE_MAPS_API_KEY ? (
+              <LoadScript 
+                googleMapsApiKey={GOOGLE_MAPS_API_KEY}
+                onLoad={() => setMapLoading(false)}
+                onError={() => {
+                  setMapLoading(false);
+                  setMapError('Map failed to load. Please try again later.');
+                }}
               >
-                {markerIcon && (
-                  <Marker 
-                    position={center}
-                    icon={markerIcon}
-                  />
-                )}
-              </GoogleMap>
-            </LoadScript>
+                <GoogleMap
+                  mapContainerStyle={mapContainerStyle}
+                  center={center}
+                  zoom={13}
+                  onLoad={onMapLoad}
+                  onUnmount={() => setMapLoading(false)}
+                  options={mapOptions}
+                >
+                  {markerIcon && (
+                    <Marker 
+                      position={center}
+                      icon={markerIcon}
+                    />
+                  )}
+                </GoogleMap>
+              </LoadScript>
+            ) : (
+              <div className="map-fallback">
+                <img src={staticMapUrl} alt="Map location" style={{ width: '100%', borderRadius: '8px' }} />
+                <div className="error-message">
+                  Map is unavailable without an API key. Please contact me via the form or email.
+                </div>
+              </div>
+            )}
+            {mapError && (
+              <div className="map-fallback">
+                <img src={staticMapUrl} alt="Map location fallback" style={{ width: '100%', borderRadius: '8px' }} />
+              </div>
+            )}
           </div>
         </div>
         

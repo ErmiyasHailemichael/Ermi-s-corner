@@ -1,141 +1,241 @@
-import React, { useState } from 'react';
-import { FaLinkedin, FaArrowRight, FaArrowLeft, FaBootstrap, FaDatabase, FaJs, FaHtml5, FaCss3Alt, FaReact, FaNodeJs } from 'react-icons/fa';
-import { SiTailwindcss, SiDjango, SiMongodb, SiNetlify } from 'react-icons/si';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt, FaExternalLinkAlt } from 'react-icons/fa';
 import '../styles/about.css';
 
-const skillsData = [
+const contact = {
+  email: 'hailemryias@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/ehailemichael/',
+  github: 'https://github.com/ErmiyasHailemichael',
+  location: 'Seattle, WA',
+};
+
+const personalIntro = `I'm a software engineer who loves building backend systems and APIs that solve real problems. When I'm not coding, I teach programming to kids because I believe in making tech accessible to everyone. Currently exploring Spring Boot, building scalable APIs, and always learning something new.`;
+
+const featuredProjects = [
   {
-    category: 'Programming Languages',
-    skills: [
-      { name: 'JavaScript', icon: <FaJs /> },
-      { name: 'Python', icon: <FaDatabase /> },
-    ],
+    title: 'BuildaBite',
+    description: 'Java CLI application for building burritos/bowls with receipt generation',
+    tech: ['Java', 'JUnit', 'CLI'],
+    link: '/projects',
+    github: 'https://github.com/ErmiyasHailemichael/BuildaBite',
   },
   {
-    category: 'Front-End',
-    skills: [
-      { name: 'Bootstrap', icon: <FaBootstrap /> },
-      { name: 'CSS', icon: <FaCss3Alt /> },
-      { name: 'HTML', icon: <FaHtml5 /> },
-      { name: 'React', icon: <FaReact /> },
-      { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
-    ],
+    title: 'E-Commerce API (Clothing Store)',
+    description: 'Spring Boot REST API with JWT authentication and persistent shopping carts',
+    tech: ['Java 17', 'Spring Boot', 'JWT', 'MySQL'],
+    link: '/projects',
+    github: '#',
   },
+];
+
+const experience = [
   {
-    category: 'Back-End and Databases',
-    skills: [
-      { name: 'Django', icon: <SiDjango /> },
-      { name: 'MongoDB', icon: <SiMongodb /> },
-      { name: 'Node.js', icon: <FaNodeJs /> },
-      { name: 'SQL', icon: <FaDatabase /> },
-    ],
-  },
-  {
-    category: 'Other Tech Skills',
-    skills: [
-      { name: 'Netlify', icon: <SiNetlify /> },
+    role: 'Coding Instructor',
+    company: 'Coding with Kids',
+    location: 'Remote',
+    period: 'Nov 2023 - Present',
+    tech: ['JavaScript', 'Python', 'React', 'Node.js', 'Scratch'],
+    description: 'Teaching 200+ students programming fundamentals and modern web development',
+    highlights: [
+      'Created 50+ hands-on coding projects that students actually shipped',
+      'Built curriculum using industry-standard tools (VS Code, Replit, code.org)',
+      'Taught game development for Minecraft and Roblox platforms',
     ],
   },
 ];
 
-const educationData = [
+const education = [
   {
-    year: '2023 - Present',
-    degree: 'Computer Science',
-    school: 'North Seattle College',
-    description: 'Currently pursuing a degree in Computer Science with a focus on software development and AI.'
+    title: 'Certificate in Application Development',
+    org: 'Year Up United',
+    location: 'Seattle, WA',
+    period: 'Aug 2024 - Present',
+    description: 'Intensive career development program focused on professional skills and technical training',
+    coursework: ['Application Development', 'Computer Architecture', 'Programming', 'Database Fundamentals', 'Software Testing', 'Software Development'],
   },
   {
-    year: '2018 - 2022',
-    degree: 'High School Diploma',
-    school: 'Somewhere High School',
-    description: 'Graduated with honors, participated in robotics and coding clubs.'
-  }
+    title: "Associate's Degree - Computer Science",
+    org: 'North Seattle College',
+    location: 'Seattle, WA',
+    period: '2022 - 2024',
+    description: 'Completed 80+ credits in computer science fundamentals',
+    coursework: ['Introduction to Programming', 'Programming I & II', 'Calculus I & II', 'Physics', 'Data Structures'],
+  },
 ];
 
-const PAGES = ['about', 'skills', 'education'];
+const techSkills = {
+  languages: ['JavaScript', 'Python', 'Java', 'HTML', 'CSS'],
+  frameworks: ['React', 'Node.js', 'Spring Boot'],
+  databases: ['MongoDB', 'MySQL'],
+  tools: ['Git', 'GitHub', 'Postman', 'VS Code'],
+};
 
 const About = () => {
-  const [page, setPage] = useState(0); // 0: About, 1: Skills, 2: Education
-
-  const goNext = () => setPage((p) => Math.min(p + 1, PAGES.length - 1));
-  const goPrev = () => setPage((p) => Math.max(p - 1, 0));
-
   return (
-    <div className="about-page-wrapper">
-      {/* Left Social Bar */}
-      <div className="about-social-bar">
-        <a href="https://www.linkedin.com/in/ermiyas-haile/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <FaLinkedin />
-        </a>
+    <section className="about-portfolio">
+      {/* Header with Photo */}
+      <div className="about-header">
+        <div className="about-header-content">
+          <h1 className="about-name">Ermiyas Hailemichael</h1>
+          <p className="about-title">Software Engineer</p>
+          <div className="about-contact">
+            <a href={`mailto:${contact.email}`} className="contact-link">
+              <FaEnvelope /> {contact.email}
+            </a>
+            <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" className="contact-link">
+              <FaLinkedin /> LinkedIn
+            </a>
+            <a href={contact.github} target="_blank" rel="noopener noreferrer" className="contact-link">
+              <FaGithub /> GitHub
+            </a>
+            <span className="contact-link">
+              <FaMapMarkerAlt /> {contact.location}
+            </span>
+          </div>
+        </div>
+        <img src="/Bios.png" alt="Ermiyas Hailemichael" className="about-photo" />
       </div>
 
-      {/* Main Content */}
-      <div className="about-sections">
-        {/* About Me Page */}
-        {page === 0 && (
+      {/* Personal Introduction */}
+      <div className="about-intro">
+        <p>{personalIntro}</p>
+      </div>
+
+      <div className="about-grid">
+        {/* Main Content */}
+        <div className="about-main">
+          {/* Featured Work */}
           <section className="about-section">
-            <h2>About Me</h2>
-            <p>
-              I am a passionate software developer with a love for building dynamic and user-friendly web applications. My journey in tech started with curiosity and has grown into a deep interest in JavaScript, React, and AI. I enjoy solving real-world problems and am always eager to learn new technologies and improve my skills.
-            </p>
-          </section>
-        )}
-        {/* Skills Page */}
-        {page === 1 && (
-          <section className="about-section">
-            <h2>Skills</h2>
-            {skillsData.map((group) => (
-              <div key={group.category} className="skill-group">
-                <h4>{group.category}</h4>
-                <div className="skill-boxes">
-                  {group.skills.map((skill) => (
-                    <div className="skill-box" key={skill.name}>
-                      <span className="skill-icon">{skill.icon}</span>
-                      <span className="skill-name">{skill.name}</span>
+            <h2>Featured Work</h2>
+            <p className="section-intro">Check out some of my recent projects. <Link to="/projects" className="inline-link">View all projects <FaExternalLinkAlt /></Link></p>
+            <div className="featured-projects">
+              {featuredProjects.map((project) => (
+                <div className="featured-project-card" key={project.title}>
+                  <div className="featured-project-header">
+                    <h3>{project.title}</h3>
+                    <div className="featured-project-tech">
+                      {project.tech.map((tech) => (
+                        <span key={tech} className="tech-badge-small">{tech}</span>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </section>
-        )}
-        {/* Education Page */}
-        {page === 2 && (
-          <section className="about-section">
-            <h2>Education</h2>
-            <div className="education-timeline">
-              {educationData.map((edu, idx) => (
-                <div className="timeline-item" key={idx}>
-                  <div className="timeline-year">{edu.year}</div>
-                  <div className="timeline-content">
-                    <h4>{edu.degree}</h4>
-                    <p className="timeline-school">{edu.school}</p>
-                    <p className="timeline-desc">{edu.description}</p>
+                  </div>
+                  <p className="featured-project-desc">{project.description}</p>
+                  <div className="featured-project-links">
+                    <Link to={project.link} className="project-link">
+                      View Details <FaExternalLinkAlt />
+                    </Link>
+                    {project.github !== '#' && (
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-link">
+                        GitHub <FaGithub />
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
             </div>
           </section>
-        )}
-      </div>
 
-      {/* Navigation Arrows */}
-      <div className="about-navigation-arrows">
-        {page > 0 && (
-          <button className="nav-arrow left" onClick={goPrev} aria-label="Previous Page">
-            <FaArrowLeft />
-          </button>
-        )}
-        {page < PAGES.length - 1 && (
-          <button className="nav-arrow right" onClick={goNext} aria-label="Next Page">
-            <FaArrowRight />
-          </button>
-        )}
+          {/* Experience */}
+          <section className="about-section">
+            <h2>Experience</h2>
+            {experience.map((item) => (
+              <div className="experience-card" key={item.role + item.company}>
+                <div className="exp-header">
+                  <div>
+                    <h3 className="exp-role">{item.role}</h3>
+                    <p className="exp-company">{item.company}</p>
+                  </div>
+                  <div className="exp-meta">
+                    <span className="exp-period">{item.period}</span>
+                    <span className="exp-location">{item.location}</span>
+                  </div>
+                </div>
+                <p className="exp-description">{item.description}</p>
+                <div className="exp-tech">
+                  {item.tech.map((tech) => (
+                    <span key={tech} className="tech-badge">{tech}</span>
+                  ))}
+                </div>
+                <ul className="exp-highlights">
+                  {item.highlights.map((highlight, idx) => (
+                    <li key={idx}>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </section>
+
+          {/* Education */}
+          <section className="about-section">
+            <h2>Education</h2>
+            {education.map((edu) => (
+              <div className="education-card" key={edu.title}>
+                <div className="edu-header">
+                  <div>
+                    <h3 className="edu-degree">{edu.title}</h3>
+                    <p className="edu-school">{edu.org}</p>
+                  </div>
+                  <div className="edu-meta">
+                    <span className="edu-period">{edu.period}</span>
+                    <span className="edu-location">{edu.location}</span>
+                  </div>
+                </div>
+                <p className="edu-description">{edu.description}</p>
+                <div className="edu-coursework">
+                  <strong>Coursework:</strong> {edu.coursework.join(', ')}
+                </div>
+              </div>
+            ))}
+          </section>
+        </div>
+
+        {/* Sidebar */}
+        <aside className="about-sidebar">
+          {/* Tech Stack */}
+          <section className="sidebar-section">
+            <h3>Tech Stack</h3>
+            
+            <div className="skill-category">
+              <h4>Languages</h4>
+              <div className="skill-chips">
+                {techSkills.languages.map((skill) => (
+                  <span key={skill} className="skill-chip">{skill}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="skill-category">
+              <h4>Frameworks & Libraries</h4>
+              <div className="skill-chips">
+                {techSkills.frameworks.map((skill) => (
+                  <span key={skill} className="skill-chip">{skill}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="skill-category">
+              <h4>Databases</h4>
+              <div className="skill-chips">
+                {techSkills.databases.map((skill) => (
+                  <span key={skill} className="skill-chip">{skill}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="skill-category">
+              <h4>Tools</h4>
+              <div className="skill-chips">
+                {techSkills.tools.map((skill) => (
+                  <span key={skill} className="skill-chip">{skill}</span>
+                ))}
+              </div>
+            </div>
+          </section>
+        </aside>
       </div>
-    </div>
+    </section>
   );
 };
 
 export default About;
-
