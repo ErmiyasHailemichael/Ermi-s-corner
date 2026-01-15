@@ -1,17 +1,25 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaBlog, FaEnvelope, FaHome, FaProjectDiagram, FaUserAlt, FaBars } from "react-icons/fa";
 import "../styles/sidebar.css";
 
-const Sidebar = ({ setActiveSection, activeSection }) => {
+const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const location = useLocation();
+
+  const activeSection = (() => {
+    if (location.pathname.startsWith("/projects")) return "Projects";
+    if (location.pathname.startsWith("/about")) return "About";
+    if (location.pathname.startsWith("/blog")) return "Blog";
+    if (location.pathname.startsWith("/contact")) return "Contact";
+    return "Home";
+  })();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   const handleLinkClick = (section) => {
-    setActiveSection(section);
     setIsSidebarOpen(false); // Close sidebar after clicking a link
   };
 

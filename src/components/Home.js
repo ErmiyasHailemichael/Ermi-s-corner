@@ -35,17 +35,17 @@ const Home = () => {
         <h2 className="title">
           <TypeAnimation
             sequence={[
-              'Software Developer',
-              1000,
-              'React Developer',
-              1000,
-              'Web Developer',
-              1000,
-              'UI/UX Enthusiast',
-              1000,
+              "Backend Engineer (Java)",
+              1600,
+              "Software Developer",
+              1400,
+              "React Developer",
+              1400,
+              "Web Developer",
+              1400,
             ]}
             wrapper="span"
-            speed={50}
+            speed={45}
             repeat={Infinity}
           />
         </h2>
@@ -61,9 +61,7 @@ const Home = () => {
 
       <div className="about-me">
         <p>
-          Hello! I'm Ermiyas, a passionate software developer with a love for creating dynamic and user-friendly web applications. 
-          I specialize in JavaScript, React, and have a keen interest in robotics and AI. My goal is to build impactful projects that 
-          solve real-world problems and to keep learning and growing in the tech world.
+          I focus on designing and shipping backend services—APIs, data stores, and reliability tooling—that keep products fast and stable. I enjoy turning requirements into clean contracts, hardening systems with observability, and iterating with measurable impact.
         </p>
       </div>
 
@@ -76,7 +74,7 @@ const Home = () => {
           <span>View Resume</span>
         </button>
         <a 
-          href="https://www.linkedin.com/in/ermiyas-haile/" 
+          href="https://www.linkedin.com/in/ehailemichael/" 
           target="_blank" 
           rel="noopener noreferrer" 
           className="icon-button linkedin-button"
@@ -85,13 +83,21 @@ const Home = () => {
           <span>LinkedIn</span>
         </a>
         <a 
-          href="https://github.com/yourusername" 
+          href="https://github.com/ErmiyasHailemichael" 
           target="_blank" 
           rel="noopener noreferrer" 
           className="icon-button github-button"
         >
           <FaGithub className="button-icon" /> 
           <span>GitHub</span>
+        </a>
+        <a
+          href="https://cal.com/ermiyas-hailemichael/15min" 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="icon-button linkedin-button"
+        >
+          <span>Book a 15-min call</span>
         </a>
       </div>
     </section>
