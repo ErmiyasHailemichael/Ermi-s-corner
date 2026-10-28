@@ -46,4 +46,12 @@ userSchema.methods.comparePassword = async function(candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
 };
 
+// Strip the password hash whenever a user doc is serialized to JSON
+userSchema.set('toJSON', {
+  transform: (_doc, ret) => {
+    delete ret.password;
+    return ret;
+  }
+});
+
 module.exports = mongoose.model('User', userSchema); 
