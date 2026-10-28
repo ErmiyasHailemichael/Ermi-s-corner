@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/project.css';
-import { projects, otherProjects } from '../data/portfolioData';
+import { projects } from '../data/portfolioData';
 
 const Projects = () => {
   const [selectedFilter, setSelectedFilter] = useState('all');

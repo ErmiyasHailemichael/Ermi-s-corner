@@ -9,7 +9,6 @@ import Contact from './components/Contact';
 import Login from './components/Login';
 import BlogList from './components/BlogList';
 import BlogDetail from './components/BlogDetail';
-import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
